@@ -76,12 +76,12 @@ public class GameWindow extends JFrame implements ActionListener
 		{
 			controller.writeMark((Block) e.getSource());
 			
-			if(controller.isBoardFull()){
-				JOptionPane.showMessageDialog(null, "Well, looks like nobody won. ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+			if(controller.isGameOver()){
+				JOptionPane.showMessageDialog(null, "Yay, team " + controller.getPlayerTurn() + " has won! ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
 				controller.resetBoard();
 			}
-			else if(controller.isGameOver()){
-				JOptionPane.showMessageDialog(null, "Yay, team " + controller.getPlayerTurn() + " has won! ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+			else if(controller.isBoardFull()){
+				JOptionPane.showMessageDialog(null, "Well, looks like nobody won. ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
 				controller.resetBoard();
 			}
 			
