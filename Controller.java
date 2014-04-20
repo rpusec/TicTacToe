@@ -43,11 +43,6 @@ public class Controller
 			return true;
 		}
 		
-		if(playerTurn == Block.MARK_NOUGHT)
-			playerTurn = Block.MARK_CROSS;
-		else if(playerTurn == Block.MARK_CROSS)
-			playerTurn = Block.MARK_NOUGHT;
-		
 		return false;
 	}
 	
@@ -187,6 +182,14 @@ public class Controller
 				blocks[r][c].resetBlock();
 			}
 		}
+	}
+	
+	public void changePlayerTurn()
+	{
+		if(playerTurn == Block.MARK_NOUGHT)
+			playerTurn = Block.MARK_CROSS;
+		else if(playerTurn == Block.MARK_CROSS)
+			playerTurn = Block.MARK_NOUGHT;
 	}
 	
 	public SideHud getSideHud()

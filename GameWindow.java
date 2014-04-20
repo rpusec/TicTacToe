@@ -74,18 +74,24 @@ public class GameWindow extends JFrame implements ActionListener
 	{
 		if(e.getSource() instanceof Block)
 		{
-			controller.writeMark((Block) e.getSource());
+			Block clickedBlock = (Block) e.getSource();
 			
-			if(controller.isGameOver()){
-				JOptionPane.showMessageDialog(null, "Yay, team " + controller.getPlayerTurn() + " has won! ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
-				controller.resetBoard();
+			if(!clickedBlock.getDisabled())
+			{
+				controller.writeMark(clickedBlock);
+				
+				if(controller.isGameOver()){
+					JOptionPane.showMessageDialog(null, "Yay, team " + controller.getPlayerTurn() + " has won! ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+					controller.resetBoard();
+				}
+				else if(controller.isBoardFull()){
+					JOptionPane.showMessageDialog(null, "Well, looks like nobody won. ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+					controller.resetBoard();
+				}
+				
+				controller.changePlayerTurn();
+				controller.updateSideHud();
 			}
-			else if(controller.isBoardFull()){
-				JOptionPane.showMessageDialog(null, "Well, looks like nobody won. ", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
-				controller.resetBoard();
-			}
-			
-			controller.updateSideHud();
 		}
 		else
 		{
